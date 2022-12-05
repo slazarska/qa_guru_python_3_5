@@ -55,13 +55,15 @@ def test_successful_submit_form():
     browser.element('#submit').click()
 
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
-    browser.all('.table-responsive td:nth-child(2)').should(have.texts('Test Firstname Testlastname',
-                                                                       'testemailaddress@testmailservice.com',
-                                                                       'Other',
-                                                                       '9211234567',
-                                                                       '24 September,1980',
-                                                                       'Maths, Computer Science',
-                                                                       'Sports, Reading, Music',
-                                                                       'testuserpic.jpg',
-                                                                       'Test st., 123, 45',
-                                                                       'NCR Delhi'))
+    browser.element("//td[text()='Student Name']").element("//td[text()='Test Firstname Testlastname']").should(have.text('Test Firstname Testlastname'))
+    browser.element("//td[text()='Student Email']").element("//td[text()='testemailaddress@testmailservice.com']").should(have.text('testemailaddress@testmailservice.com'))
+    browser.element("//td[text()='Gender']").element("//td[text()='Other']").should(have.text('Other'))
+    browser.element("//td[text()='Mobile']").element("//td[text()='9211234567']").should(have.text('9211234567'))
+    browser.element("//td[text()='Date of Birth']").element("//td[text()='24 September,1980']").should(have.text('24 September,1980'))
+    browser.element("//td[text()='Subjects']").element("//td[text()='Maths, Computer Science']").should(have.text('Maths, Computer Science'))
+    browser.element("//td[text()='Hobbies']").element("//td[text()='Sports, Reading, Music']").should(have.text('Sports, Reading, Music'))
+    browser.element("//td[text()='Picture']").element("//td[text()='testuserpic.jpg']").should(have.text('testuserpic.jpg'))
+    browser.element("//td[text()='Address']").element("//td[text()='Test st., 123, 45']").should(
+        have.text('Test st., 123, 45'))
+    browser.element("//td[text()='State and City']").element("//td[text()='NCR Delhi']").should(
+        have.text('NCR Delhi'))
