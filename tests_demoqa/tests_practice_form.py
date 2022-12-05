@@ -47,15 +47,12 @@ def test_successful_submit_form():
     browser.element('#currentAddress').should(have.value('Test st., 123, 45'))
 
     browser.element('#state').click()
-    browser.element('#react-select-3-input').press_tab()
+    browser.element('#react-select-3-input').type('NCR').press_enter()
 
     browser.element('#city').click()
-    browser.element('#react-select-4-input').press_enter()
+    browser.element('#react-select-4-input').type('Delhi').press_enter()
 
-    #метод click() selena не работает, error message 'element click intercepted: Element <button id="submit"...">...</button> is not clickable at point (1377, 863).
-    #если бы элемент становился кликабельным после заполнения обязательных полей, можно было бы
-    #добавить проверку изменения состояния элемента до и после заполнения формы
-    browser.element('#submit').press_enter()
+    browser.element('#submit').click()
 
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
     browser.all('.table-responsive td:nth-child(2)').should(have.texts('Test Firstname Testlastname',
@@ -67,4 +64,4 @@ def test_successful_submit_form():
                                                                        'Sports, Reading, Music',
                                                                        'testuserpic.jpg',
                                                                        'Test st., 123, 45',
-                                                                       'Uttar Pradesh Agra'))
+                                                                       'NCR Delhi'))
